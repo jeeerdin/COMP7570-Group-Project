@@ -156,6 +156,17 @@ for tx in tx_data.items():
 
     tx_obj.inputs.appends(addr_obj)
 
-    addr_obj.spending_transactions.append(())
+    spend_tx = (tx_obj, )
+
+    for earn_tx in addr_obj.earning_transactions:
+      # iterate through earning transactions ntil we find the correct transaction hash
+      # the 0'th index being the hash of the earning transaction
+      if earn_tx[0] == tx_obj.hash:
+
+        # we attach the amount to this pair, so now the spend_tx will look like ( tx_obj, amount )
+        spend_tx[1] = earn_tx[1]
+
+    # appending the pair earn_tx to the addresses list of spending_transactions
+    addr_obj.spending_transactions.append(spend_tx)
 
     
