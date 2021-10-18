@@ -1,6 +1,7 @@
+from Transaction import Transaction
 import threading
 
-YEAR = 2010
+YEAR = 2009
 DATA_PATH = "./data/edges{}/".format(YEAR)
 
 input_files = [DATA_PATH + "inputs{}_{}.txt".format(YEAR,i) for i in range(1,13)]
@@ -54,7 +55,7 @@ def parse_output_line(output_line):
 
 
 # Stores a transaction as Hash : (time,inputs,output)
-transactions = {}
+tx_data = {}
 
 def read_input_file(i):
     file_object = open(input_files[i], "r")
@@ -70,7 +71,7 @@ def read_input_file(i):
                                 'Output Index':inputs[i+1],
                                 'Address':None,
                                 'Amount':None})
-      transactions[hashh] = {'Time':time,'Inputs':pretty_inputs,'Outputs':None}
+      tx_data[hashh] = {'Time':time,'Inputs':pretty_inputs,'Outputs':None}
 
     file_object.close()
 
@@ -85,7 +86,7 @@ def read_output_file(i):
       for i in range(0,len(outputs),2):
           pretty_outputs.append({'Address':outputs[i],
                                 'Amount':outputs[i+1]})
-      transactions[hashh]['Outputs'] = pretty_outputs
+      tx_data[hashh]['Outputs'] = pretty_outputs
 
     file_object.close()
 
@@ -102,3 +103,26 @@ read_all_input()
 read_all_output()
 
 # TODO: in the transactions dictionary, the address and amount of the inputs are None. This needs to be filled up I think this is "linking the inputs and outputs
+
+
+# dictionary which maps each transaction hash to a pointer to its associated Transaction object
+transactions = {}
+# dictionary which maps each address hash to a pointer to its associated Address object
+addresses = {}
+
+# iterating through transaction creating Transaction objects and adding them to the graph as we go
+for tx in tx_data.items():
+
+  hashh = tx[0]
+  transaction_data = tx_data[hashh]
+
+  # instantiates the object
+  tx_obj = Transaction(hashh, transaction_data['Time'])
+
+  # and stores the pointer to the object in transactions dictionary
+  transactions[hashh] = tx_obj
+
+  # links transaction to all connected inputs
+  for addr in transaction_data['Inputs']:
+    print(addr)
+
