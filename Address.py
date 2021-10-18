@@ -3,6 +3,5 @@ class Address:
         self.hash = hash
         self.spending_transactions = []
         self.earning_transactions = []
-        self.coins_connected = []
 
     

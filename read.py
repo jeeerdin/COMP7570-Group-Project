@@ -130,8 +130,12 @@ for tx in tx_data.items():
       new_addr = Address(addr_hash)
       addresses[addr_hash] = new_addr
 
-    # transaction appends the address to it's list of outputs
+    # transaction appends the address to its list of outputs
     tx_obj.outputs.append(addresses[addr_hash])
+
+    # address appends the transaction to its list of earning_transaction, along with the amount earned
+    addresses[addr_hash].earning_transactions.append((tx_obj, addresses[addr_hash]['Amount']))
+    
 
   # finally we store the pointer to this new Transaction object in transactions dictionary
   transactions[hashh] = tx_obj
