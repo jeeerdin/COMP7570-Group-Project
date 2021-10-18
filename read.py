@@ -1,3 +1,4 @@
+from Address import Address
 from Transaction import Transaction
 import threading
 
@@ -119,11 +120,18 @@ for tx in tx_data.items():
   # instantiates the object
   tx_obj = Transaction(hashh, transaction_data['Time'])
 
-  # and stores the pointer to the object in transactions dictionary
-  transactions[hashh] = tx_obj
-
-  # links transaction to all connected inputs
+  # links transaction to all connected outputs
   for addr in transaction_data['Outputs']:
+
+    addr_hash = addr['Address']
     
-    print(addr)
-    # if addresses[addr['']]
+    # if this is a new address that we have not seen before, we instantiate a new Address object
+    if addr_hash not in addresses:
+      new_addr = Address(addr_hash)
+      addresses[addr_hash] = new_addr
+
+    # transaction appends the address to it's list of outputs
+    tx_obj.outputs.append(addresses[addr_hash])
+
+  # finally we store the pointer to this new Transaction object in transactions dictionary
+  transactions[hashh] = tx_obj
