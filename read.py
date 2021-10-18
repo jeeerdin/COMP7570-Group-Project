@@ -123,6 +123,7 @@ for tx in tx_data.items():
   transactions[hashh] = tx_obj
 
   # links transaction to all connected inputs
-  for addr in transaction_data['Inputs']:
+  for addr in transaction_data['Outputs']:
+    
     print(addr)
-
+    # if addresses[addr['']]
