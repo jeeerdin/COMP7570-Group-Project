@@ -134,7 +134,7 @@ for tx in tx_data.items():
     tx_obj.outputs.append(addresses[addr_hash])
 
     # address appends the transaction to its list of earning_transaction, along with the amount earned
-    addresses[addr_hash].earning_transactions.append((tx_obj, addresses[addr_hash]['Amount']))
+    addresses[addr_hash].earning_transactions.append((tx_obj, addr['Amount']))
     
 
   # finally we store the pointer to this new Transaction object in transactions dictionary
