@@ -135,7 +135,27 @@ for tx in tx_data.items():
 
     # address appends the transaction to its list of earning_transaction, along with the amount earned
     addresses[addr_hash].earning_transactions.append((tx_obj, addr['Amount']))
-    
 
-  # finally we store the pointer to this new Transaction object in transactions dictionary
-  transactions[hashh] = tx_obj
+    # finally we store the pointer to this new Transaction object in transactions dictionary
+    transactions[hashh] = tx_obj
+    
+# iterating through all transactions again which should now already hae the linked outputs
+for tx in tx_data.items():
+
+  hashh = tx[0]
+  transaction_data = tx_data[hashh]
+
+  for input in transaction_data['Inputs']:
+
+    tx_hash = input['Transaction Hash']
+    index = input['Output Index']
+
+    tx_obj = transactions[tx_hash]
+
+    addr_obj = tx_obj.outputs[index]
+
+    tx_obj.inputs.appends(addr_obj)
+
+    addr_obj.spending_transactions.append(())
+
+    
