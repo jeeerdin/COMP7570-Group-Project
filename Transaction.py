@@ -1,6 +1,6 @@
 
 class Transaction:
-    def __init__(hash, timestamp):
+    def __init__(self, hash, timestamp):
         self.hash = hash
         self.timestamp = timestamp
         self.inputs = []
