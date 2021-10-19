@@ -1,9 +1,16 @@
 from Address import Address
 from Transaction import Transaction
-import threading
 
 YEAR = 2009
 DATA_PATH = "./data/edges{}/".format(YEAR)
+
+# dictionary which maps each transaction hash to a pointer to its associated Transaction object
+transactions = {}
+# dictionary which maps each address hash to a pointer to its associated Address object
+addresses = {}
+
+# Stores transaction data as Hash : (time,inputs,output)
+tx_data = {}
 
 input_files = [DATA_PATH + "inputs{}_{}.txt".format(YEAR,i) for i in range(1,13)]
 output_files = [DATA_PATH + "outputs{}_{}.txt".format(YEAR,i) for i in range(1,13)]
@@ -54,10 +61,6 @@ def parse_output_line(output_line):
 
   return output_line
 
-
-# Stores a transaction as Hash : (time,inputs,output)
-tx_data = {}
-
 def read_input_file(i):
     file_object = open(input_files[i], "r")
 
@@ -105,12 +108,6 @@ read_all_output()
 
 # TODO: in the transactions dictionary, the address and amount of the inputs are None. This needs to be filled up I think this is "linking the inputs and outputs
 
-
-# dictionary which maps each transaction hash to a pointer to its associated Transaction object
-transactions = {}
-# dictionary which maps each address hash to a pointer to its associated Address object
-addresses = {}
-
 # iterating through transaction creating Transaction objects and adding them to the graph as we go
 for tx in tx_data.items():
 
@@ -143,30 +140,51 @@ for tx in tx_data.items():
 for tx in tx_data.items():
 
   hashh = tx[0]
+
+  # getting the transaction object which our output serves as input for
+  # this object will currently have an empty inputs list
+  tx_obj = transactions[hashh]
+
+  # getting information regarding this transaction from the parsed data
   transaction_data = tx_data[hashh]
 
+  # for each transaction we iterate thrrough each of its inputs
   for input in transaction_data['Inputs']:
 
-    tx_hash = input['Transaction Hash']
-    index = input['Output Index']
+    # we get the prev tx and the output index of this input
+    prev_tx_hash = input['Transaction Hash']
+    output_index = input['Output Index']
 
-    tx_obj = transactions[tx_hash]
+    # in the case that the transaction which produced this output comes from an earlier year
+    if prev_tx_hash not in transactions:
+      addr_obj = Address("{}:{}".format(prev_tx_hash, output_index))
 
-    addr_obj = tx_obj.outputs[index]
+      # adds the Address object to this transactions list of inputs
+      tx_obj.inputs.append(addr_obj)
 
-    tx_obj.inputs.appends(addr_obj)
+      # we immediately add the transaction with 0 as the amount since we do not know the amount within this input
+      addr_obj.spending_transactions.append((tx_obj, 0))
 
-    spend_tx = (tx_obj, )
+    # otherwise, we know that this address is the output of a transaction that occured in our data's year
+    # meaning the address object already exists and can be found at the output index of the previous transaction
+    else:
+      addr_obj = transactions[prev_tx_hash].outputs[output_index]
 
-    for earn_tx in addr_obj.earning_transactions:
-      # iterate through earning transactions ntil we find the correct transaction hash
-      # the 0'th index being the hash of the earning transaction
-      if earn_tx[0] == tx_obj.hash:
+      # adds the Address object to this transactions list of inputs
+      tx_obj.inputs.append(addr_obj)
+    
+      spend_tx = (tx_obj, )
 
-        # we attach the amount to this pair, so now the spend_tx will look like ( tx_obj, amount )
-        spend_tx[1] = earn_tx[1]
+      # iterate through the earning transactions ntil we find the correct transaction hash
+      for earn_tx in addr_obj.earning_transactions:
+        # the 0'th index being the hash of the earning transaction
+        if earn_tx[0] == tx_obj.hash:
 
-    # appending the pair earn_tx to the addresses list of spending_transactions
-    addr_obj.spending_transactions.append(spend_tx)
+          # we attach the amount to this pair, so now the spend_tx will look like ( tx_obj, amount )
+          spend_tx[1] = earn_tx[1]
+          break
+
+      # appending the pair earn_tx to the addresses list of spending_transactions
+      addr_obj.spending_transactions.append(spend_tx)
 
     
