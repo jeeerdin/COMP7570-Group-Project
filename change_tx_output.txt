@@ -1,0 +1,41 @@
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+         415057781 function calls in 586.729 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000  586.729  586.729 <string>:1(<module>)
+       48    0.000    0.000    0.000    0.000 _bootlocale.py:33(getpreferredencoding)
+        1    0.000    0.000  586.729  586.729 change_tx.py:102(read_all)
+ 45638587   75.271    0.000  110.383    0.000 change_tx.py:21(parse_output_line)
+ 45638587  236.013    0.000  276.730    0.000 change_tx.py:42(parse_input_line)
+       12   52.660    4.388  176.714   14.726 change_tx.py:69(read_output_file)
+       12  113.591    9.466  410.015   34.168 change_tx.py:85(read_input_file)
+       24    0.000    0.000    0.000    0.000 codecs.py:186(__init__)
+       24    0.000    0.000    0.000    0.000 codecs.py:260(__init__)
+       24    0.000    0.000    0.000    0.000 codecs.py:309(__init__)
+  2155097    2.645    0.000    6.227    0.000 codecs.py:319(decode)
+  2155097    3.581    0.000    3.581    0.000 {built-in method _codecs.utf_8_decode}
+       48    0.000    0.000    0.000    0.000 {built-in method _locale.nl_langinfo}
+        1    0.000    0.000  586.729  586.729 {built-in method builtins.exec}
+ 45638587    4.459    0.000    4.459    0.000 {built-in method builtins.len}
+       12    0.000    0.000    0.000    0.000 {built-in method builtins.print}
+       48    0.003    0.000    0.003    0.000 {built-in method io.open}
+       48    0.001    0.000    0.001    0.000 {method 'close' of '_io.TextIOWrapper' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+ 91277174   24.380    0.000   24.380    0.000 {method 'join' of 'str' objects}
+ 91277174   46.991    0.000   46.991    0.000 {method 'split' of 'str' objects}
+ 91277174   27.134    0.000   27.134    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+
+
