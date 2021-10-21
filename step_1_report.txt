@@ -1,4 +1,4 @@
-Specs for pre
+Specs for computer:
 RAM specs: 32GB, 3200MHz
 CPU specs: 6 Cores, 2 Threads per core, 3.7 GHz
 
