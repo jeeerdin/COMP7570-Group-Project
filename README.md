@@ -9,13 +9,10 @@ data
 
 Note that data is in the .gitignore, you will have to download the files yourself
 
-Conda dependencies:
+Conda dependencies
+- scipy
+- numpy
 
+To run, execute the following line of code: "sh run.sh"
 
-
-Notes about input files:
-The first entry of a line is just the unix time
-The second is the transactions hash
-The third IS THE HASH OF THE TRANSACTION THAT THE FIRST INPUT CAME FROM
-The forth IS THE INDEX OF THE OUTPUTS OF THE TRANSACTION THAT THE FIRST INPUT CAME FROM
-
+See the header of each file for a description

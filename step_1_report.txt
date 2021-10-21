@@ -1,0 +1,15 @@
+RAM specs: 16GB
+CPU specs: 4 Cores, 2 Threads per core, 2.3 GHz
+
+To avoid running out of memory, we read the data in one month at a time and linked the transactions as we read the data.
+For this reason it is not possible to differentiate the I/O time and linking. 
+Additionally, we applied several preprocessing steps to the data for greater memory efficiency. 
+We will report this preprocessing time as well as the reading/linking time.
+
+preprocessing time:
+
+reading/linking time: 
+
+
+Notes:
+We were only able to link 7 months before running out of data. A 32GB machine would be needed to link all of the data.
