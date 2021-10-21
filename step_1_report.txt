@@ -6,9 +6,11 @@ For this reason it is not possible to differentiate the I/O time and linking.
 Additionally, we applied several preprocessing steps to the data for greater memory efficiency. 
 We will report this preprocessing time as well as the reading/linking time.
 
-preprocessing time:
+preprocessing time: 2202 seconds
 
-reading/linking time: 
+reading/linking time: 1504 seconds
+
+The memory taken by the final output is 760 MB
 
 
 Notes:
