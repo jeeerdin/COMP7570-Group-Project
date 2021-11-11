@@ -33,8 +33,8 @@ def parse_output_line(output_line):
   # Split by tab
   output_line = output_line.split('\t')
 
-  tx_dir[output_line[0]] = num_tx
-  output_line[0] = str(num_tx)
+  tx_dir[output_line[1]] = num_tx
+  output_line[1] = str(num_tx)
   num_tx += 1
 
   return '\t'.join(output_line) + eol
@@ -62,7 +62,6 @@ def parse_input_line(input_line):
       else:
           input_line[i] = str(tx_dir[input_line[i]])
 
-  input_line = input_line[1:]
 
   return '\t'.join(input_line) + eol
 

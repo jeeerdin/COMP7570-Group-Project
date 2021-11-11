@@ -34,8 +34,6 @@ def parse_output_line(output_line):
     idx = np.searchsorted(addr_dir,output_line[i])
     output_line[i] = str(idx) # replace address into index
 
-  output_line = output_line[1:] # remove timestamp
-
   return '\t'.join(output_line) + eol
 
 def read_output_file(i):

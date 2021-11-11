@@ -35,6 +35,7 @@ def parse_output_line(output_line):
   output_line = output_line.split('\t')
 
   # Parse transaction id
+  output_line = output_line[1:]
   output_line[0] = int(output_line[0])
 
   outputs = []
@@ -64,6 +65,7 @@ def parse_input_line(input_line):
   input_line = input_line.split('\t')
 
   # Parse transaction hash and convert to id
+  input_line = input_line[1:]
   input_line[0] = int(input_line[0])
 
   for i in range(1,len(input_line),2):
