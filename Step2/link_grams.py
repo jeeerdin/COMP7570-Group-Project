@@ -27,7 +27,7 @@ def search(start,end):
         i = start
 #
         dirty = []
-        while len(dirty) <= 122000//THREADS//24//12 and i < end:
+        while len(dirty) <= 122000//THREADS//8//12 and i < end:
 #
             p = prices[i]
             count = counts[i]
@@ -42,8 +42,9 @@ def search(start,end):
 #
                 # Print it out
 #                print("tId = {} is a darknet transaction with confidence {}".format(tId,count*(num_found**-1)))
-#            
-                dirty.append((tId,count*(num_found**-1)))
+#               
+                if count*(num_found**-1) >= .5:
+                    dirty.append((tId,count*(num_found**-1)))
 #
             i+=1
         all_ = all_ + dirty
