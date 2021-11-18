@@ -27,7 +27,7 @@ def search(start,end):
         i = start
 #
         dirty = []
-        while len(dirty) <= 122000//THREADS//8//12 and i < end:
+        while len(dirty) <= 122000//THREADS and i < end:
 #
             p = prices[i]
             count = counts[i]
