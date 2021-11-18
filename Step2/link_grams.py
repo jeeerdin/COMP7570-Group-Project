@@ -13,12 +13,14 @@ for day in days:
 
     # Remove zero prices because they are not very unique
     prices = prices[prices != 0]
-    
-    num_missed = 0
-    num_hit = 0
 
-    # For the last 1000 prices in the grams data
-    for p in prices[-1000:]:
+    # Remove non unique valuse
+    prices,counts = np.unique(prices,return_counts = True)
+
+    for i in range(1000,len(prices)):
+
+        p = prices[i]
+        count = counts[i]
 
         # Find all entries in the tx_to_addr matrix that matches that price
         find = tx_to_addr == p
@@ -29,13 +31,13 @@ for day in days:
         for tId in idx:
 
             # Print it out
-            print("tId = {} is a darknet transaction with confidence {}".format(tId,num_found**-1))
+            print("tId = {} is a darknet transaction with confidence {}".format(tId,count*(num_found**-1)))
             
             # Append it to a list of all darknet transactions
             try:
-                dirty[tId] += num_found**-1
+                dirty[tId] += count*(num_found**-1)
             except:
-                dirty[tId] = num_found**-1
+                dirty[tId] = count*(num_found**-1)
 
 
 print(dirty)
