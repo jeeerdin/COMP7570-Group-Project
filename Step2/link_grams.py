@@ -2,14 +2,19 @@ import numpy as np
 import os
 from scipy import sparse as sp
 
+# TODO: Multi-thread code
+# TODO: Cap at 1000
+
+
 days = os.listdir('../data/grams/parsed/')
 tx_to_addr = sp.load_npz('../data/daily_graphs/months_1_to_12_btc_transactions_tx_to_addr.npz').tocsc()
 dirty = {}
 
+[]
 for day in days:
     # Load the grams data for that day
     
-    prices = np.load('../data/grams/parsed/'+day)
+    prices = np.load('../data/grams/parsed/'+day) 
 
     # Remove zero prices because they are not very unique
     prices = prices[prices != 0]
