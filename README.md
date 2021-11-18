@@ -6,7 +6,7 @@
 		- edges20XX (the files for a specific year goes here)
     - grams (This is where all the files related to the grams dataset goes)
         - raw This is where the raw csv's goes,[here](https://umanitoba-my.sharepoint.com/:u:/r/personal/zammitj3_myumanitoba_ca/Documents/grams.zip?csf=1&web=1&e=Dmgd93), You will have to rename it to 'raw')
-		- parsed (This is where the processed grams data goes, you can either run 'read_grams.py', or download it from [here](https://umanitoba-my.sharepoint.com/:u:/r/personal/zammitj3_myumanitoba_ca/Documents/grams_parsed.zip?csf=1&web=1&e=XA3pvr)
+		- parsed (This is where the processed grams data goes, you can either run 'read_grams.py', or download it from [here](https://umanitoba-my.sharepoint.com/:u:/g/personal/zammitj3_myumanitoba_ca/EVhGCF1bgKxHqTw-hQUpxrEB1VglALycHKPk4LUWQVi-_Q?e=mACX1p)
 		- linked (This is where the grams data that has been linked to a transaction id will go when we get 'link_grams.py' working)
 
     - daily_graphs (This where the sparse matrices for each day goes)
