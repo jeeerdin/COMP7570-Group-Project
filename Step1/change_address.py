@@ -7,7 +7,7 @@ import numpy as np
 import cProfile
 
 YEAR = 2015
-DATA_PATH = "./data/edges{}/".format(YEAR)
+DATA_PATH = "../data/edges/edges{}/".format(YEAR)
     
 # load the sorted addresses
 addr_dir = np.load('addr_dir.npy')

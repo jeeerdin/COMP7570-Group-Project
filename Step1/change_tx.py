@@ -9,7 +9,7 @@ import numpy as np
 import cProfile
 
 YEAR = 2015
-DATA_PATH = "./data/edges{}/".format(YEAR)
+DATA_PATH = "../data/edges/edges{}/".format(YEAR)
     
 # A dictionary storing the index asscociated with each transaction
 tx_dir = {}

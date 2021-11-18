@@ -1,0 +1,33 @@
+Step 1:
+Read in one month
+Find all transaction hashes for day x (list)
+use tx_dir.npy file to convert the hashes to indexes (list)
+index into tx_to_addr matrix and addr_to_tx matrix to get daily matrices (tx_to_addr[lis] , addr_to_tx[:,lis])
+write this to file (we will have 365 tx_to_addr matrices and 365 addr_to_tx matrices)
+
+Step 2:
+Read in one day of darknet transactions
+Find input amount (.0012)
+Read daily tx_to_addr and addr_to_tx
+Search addr_to_tx for input amount (hope that it is unique) to find the darknet buyer address
+Find the corresponding output addresses for the tx to find the seller addresses
+Store this in an array of size #NUM_ADDRESSES (1 if darknet,0 o.w.)
+
+Step 3:
+Generate features...
+Judah: Try tensor factorization
+Rest: Try our feature + bitcoin heist features
+Genearte a matrix of size #NUM_ADDRESSES by #NUM_FEATURES
+
+
+
+Notes:
+only take 1k (or the same number of darknet) clean transactions per day
+Cunyet wants us to replace prevyear with actual address (see how prevelent this is, and leave it if we can)
+Each output is typcally spent in 21 days
+
+
+Step 4:
+Leave second to last month for model validation
+Leave last month for model testing
+

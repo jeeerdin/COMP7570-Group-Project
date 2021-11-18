@@ -15,7 +15,7 @@ MAX_NUM_ADDR = int(56916695)
 MAX_NUM_TX = int(45638587)
 
 # How many months to read?
-NUM_MONTHS = 6
+NUM_MONTHS = 12
 
 addr_to_tx = csr_matrix((MAX_NUM_ADDR,MAX_NUM_TX),dtype = 'float64')
 tx_to_addr = csr_matrix((MAX_NUM_TX,MAX_NUM_ADDR),dtype = 'float64')
@@ -153,5 +153,5 @@ def read_all():
 
 if __name__ == '__main__':
     cProfile.run('read_all()')
-    scipy.sparse.save_npz("months_1_to_6_btc_transactions_addr_to_tx.npz",addr_to_tx)
-    scipy.sparse.save_npz("months_1_to_6_btc_transactions_tx_to_addr.npz",tx_to_addr)
+    scipy.sparse.save_npz("../data/daily_graphs/months_1_to_12_btc_transactions_addr_to_tx.npz",addr_to_tx)
+    scipy.sparse.save_npz("../data/daily_graphs/months_1_to_12_btc_transactions_tx_to_addr.npz",tx_to_addr)

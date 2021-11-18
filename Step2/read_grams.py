@@ -3,12 +3,12 @@ import os
 import pandas as pd
 import json
 
-folders = os.listdir('grams/')
+folders = os.listdir('../data/grams/raw/')
 
 csv = {}
 
 for folder in folders:
-    csv[folder] = os.listdir('grams/'+folder)
+    csv[folder] = os.listdir('../data/grams/raw/'+folder)
 
 prices = {}
 
@@ -17,7 +17,7 @@ for folder in folders:
     tx = []
     for m in markets:
         try:
-            x = pd.read_csv('grams/{}/{}'.format(folder,m),on_bad_lines='warn')['price'].to_numpy()
+            x = pd.read_csv('../data/grams/raw/{}/{}'.format(folder,m),on_bad_lines='warn')['price'].to_numpy()
             tx.append(x)
         except Exception:
             print('error in {} {}'.format(folder,m))
@@ -36,4 +36,4 @@ for mmdd in prices:
     arr = prices[mmdd]
     arr = arr*1e8
     arr = arr.astype('uint64')
-    np.save('grams_parsed/'+mmdd,arr)
+    np.save('../data/grams/parsed/'+mmdd,arr)

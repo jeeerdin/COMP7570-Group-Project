@@ -6,7 +6,7 @@ import numpy as np
 import cProfile
 
 YEAR = 2015
-DATA_PATH = "./data/edges{}/".format(YEAR)
+DATA_PATH = "../data/edges/edges{}/".format(YEAR)
     
 # A set containing all known addresses
 addr_dir = {'prevyear','noaddress'}
