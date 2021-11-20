@@ -8,12 +8,12 @@
 ---
 
 #### Step 1 Results
-- Results can be read in [step_1_report.txt](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step1/step_1_report.txt)
+- Results can be read in [step_1_report](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step1/step_1_report.md)
 
 ---
 
 #### Step 2 Results
-- Results can be read in [step_2_report.txt](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step2/step_2_report.txt)
+- Results can be read in [step_2_report](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step2/step_2_report.md)
 
 ---
 
