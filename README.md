@@ -1,4 +1,23 @@
-#### Expected repository structure
+# COMP 4060/7570 Group 2 Project
+---
+#### Members
+- Judah Zammit
+- Jordan Kashton
+- Abram Kremer
+
+---
+
+#### Step 1 Results
+- Results can be read in [step_1_report.txt](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step1/step_1_report.txt)
+
+---
+
+#### Step 2 Results
+- Results can be read in [step_2_report.txt](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step2/step_2_report.txt)
+
+---
+
+#### Expected Repository Structure
 
 * data (This is where all the data goes, this file is included in the .gitignore so you will have to download the files yourself)
 
@@ -18,5 +37,7 @@
 
 * Step1 (All the files for step 1)
 * Step2 (All the files for step 2)
+* Step3 (All the files for step 2)
 
+---
 
