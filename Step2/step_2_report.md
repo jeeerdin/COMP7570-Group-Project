@@ -1,15 +1,15 @@
 The results for this step are stored in a matrix which includes equal portions or darknet address and regular addresses. For each address, a number of features are stored, these features are described below.
 
 Address Features:
-    - Sum of input amounts
-    - Sum of output amounts
-    - Number of inputs received
-    - Number of outputs spent
-    - Average input amount
-    - Average output amount
-    - Standard deviation of input amounts
-    - Standard deviation of input amounts
-    - Ratio of number of inputs to outputs
+- Sum of input amounts
+- Sum of output amounts
+- Number of inputs received
+- Number of outputs spent
+- Average input amount
+- Average output amount
+- Standard deviation of input amounts
+- Standard deviation of input amounts
+- Ratio of number of inputs to outputs
 
 Since there are frequently cases where the amount of a darknet transaction can be associated with multiple outputs. We also assign each address with a confidence level.
 
