@@ -23,7 +23,7 @@ for i in range(THREADS):
 
 all_ = []
 
-# links darknet amounts to addresses from indices start to end
+# links darknet amounts to transactions from indices start to end
 def search(start,end):
         global all_
 #
@@ -47,8 +47,8 @@ def search(start,end):
             # For each transaction found
             for tId in idx:
 #
-                # calculates a confidence to assign to that addres being darknet
-                # only addresses with a confidence >= 50% are included in the list of suspected darknet addresses
+                # calculates a confidence to assign to that transaction being darknet
+                # only transactions with a confidence >= 50% are included in the list of suspected darknet transactions
                 if count*(num_found**-1) >= .5:
                     dirty.append((tId,count*(num_found**-1)))
 #
