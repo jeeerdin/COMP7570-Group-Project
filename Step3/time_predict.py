@@ -14,8 +14,12 @@ all_y_test = []
 y_days = []
 
 for day in range(1,365):
-    X_days.append(np.load('../data/grams/X/{}.npy'.format(day)[:1000]))
-    y_days.append(np.load('../data/grams/y/{}.npy'.format(day)[:1000]))
+    X = np.load('../data/grams/X/{}.npy'.format(day))
+    X = np.concatenate([X[:1000],X[-1000:]],axis = 0)
+    y = np.load('../data/grams/y/{}.npy'.format(day))
+    y = np.concatenate([y[:1000],y[-1000:]],axis=0)
+    X_days.append(X)
+    y_days.append(y)
 
 while window_start + window_size <= 364:
     # Read in first ten X and y matrics
@@ -30,9 +34,11 @@ while window_start + window_size <= 364:
 
     # Train a model on X and y
     clf = RandomForestClassifier(n_jobs = THREADS)
+    #clf = sk.tree.DecisionTreeClassifier(max_depth = 3)
     clf.fit(X_train, y_train)
-    # We could try support vector machine, NN, Xgboost,
-    # We could try ensembling them
+    #sk.tree.export_graphviz(clf,out_file='./tree.dot',
+    #                        feature_names = ['Input Count','Output Count','Input Standard Deviation','Output Standard Deviation'],
+    #                        class_names = ['Clean','Darknet'])
 
     # Predict on the eleventh day
     y_pred = clf.predict(X_test)
@@ -43,7 +49,7 @@ while window_start + window_size <= 364:
 
     print((y_pred == y_test).sum() / y_pred.shape[0])
 
-    window_start += 30
+    window_start += 1
 
 # Record precision,recall, accuracy and f1 score for all predicted values.
 all_y_pred = np.concatenate(all_y_pred,axis = 0)
