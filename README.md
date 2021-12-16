@@ -17,6 +17,11 @@
 
 ---
 
+#### Step 3 Results
+- Results can be read in [step_3_report](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step3/step_3_report.md)
+
+---
+
 #### Expected Repository Structure
 
 * data (This is where all the data goes, this file is included in the .gitignore so you will have to download the files yourself)
