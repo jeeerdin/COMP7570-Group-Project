@@ -23,6 +23,7 @@ for month in range(1,13):
     # load in this day's list of darknet addresses
     num_bad = np.load('../data/grams/linked/bad_addr/{}.npy'.format(raw_day)).shape[0]
     
+    # getting inputs and outputs where the total will be equal to the number of darknets addresses we found
     i = tx_to_addr.indices
     np.random.shuffle(i)
     i = i[:num_bad//2]
@@ -31,6 +32,7 @@ for month in range(1,13):
     np.random.shuffle(o)
     o = o[:num_bad//2]
 
+    # our list of good addresses will be the concatenation of both the inputs and outputs
     good_addr = np.concatenate([i,o])
     
     np.save('../data/grams/linked/good_addr/{}.npy'.format(raw_day),good_addr)
