@@ -6,11 +6,11 @@
 
 ---
 
-![alt text](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step3/Step_3_figures_and_tables/Random_Forest_Hyper_Parameter_Optimization.PNG?raw=true)
+![alt text](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step3/Step_3_figures_and_tables/Random_Forest_Hyper_Parameter_Optimization_Table.PNG?raw=true)
 
 ---
 
-![alt text](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step3/Step_3_figures_and_tables/LightGBM_Hyper_Parameter_Optimization.PNG?raw=true)
+![alt text](https://github.com/jeeerdin/COMP7570-Group-Project/blob/main/Step3/Step_3_figures_and_tables/LightGBM_Hyper_Parameter_Optimization_Table.PNG?raw=true)
 
 ---
 
