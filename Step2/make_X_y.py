@@ -3,8 +3,9 @@ import numpy as np
 
 features = np.load('../data/grams/features.npy')
 
+TOTAL_DAYS = 365
 
-for day in range(1,365):
+for day in range(1, TOTAL_DAYS):
     good_addr = np.load('../data/grams/linked/good_addr/{}.npy'.format(day))
     bad_addr = np.load('../data/grams/linked/bad_addr/{}.npy'.format(day))
 

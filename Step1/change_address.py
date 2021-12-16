@@ -8,7 +8,7 @@ import cProfile
 
 YEAR = 2015
 DATA_PATH = "../data/edges/edges{}/".format(YEAR)
-    
+READ_EVERY = 12
 # load the sorted addresses
 addr_dir = np.load('addr_dir.npy')
 
@@ -57,7 +57,7 @@ def read_all():
     '''
     Reads every output file
     '''
-    for i in range(12):
+    for i in range(READ_EVERY):
         print(i)
         read_output_file(i)
 

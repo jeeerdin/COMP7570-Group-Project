@@ -10,6 +10,7 @@ import cProfile
 
 YEAR = 2015
 DATA_PATH = "../data/edges/edges{}/".format(YEAR)
+READ_EVERY = 12
     
 # A dictionary storing the index asscociated with each transaction
 tx_dir = {}
@@ -102,7 +103,7 @@ def read_all():
     '''
     Reads every output and input file
     '''
-    for i in range(12):
+    for i in range(READ_EVERY):
         print(i)
         read_output_file(i)
         read_input_file(i)

@@ -3,6 +3,8 @@ from scipy import sparse as sp
 import threading
 
 THREADS = 8
+LINK_SPLIT = 122000
+CONFI_AMOUNT = 0.5
 
 prices = np.load('../data/grams/parsed/judah.npy')
 tx_to_addr = sp.load_npz('../data/daily_graphs/months_1_to_12_btc_transactions_tx_to_addr.npz').tocsc()
@@ -33,7 +35,7 @@ def search(start,end):
         # will also stop if the number of linked addresses hits the goal of 122,000
         # This number was calculated by 1000 * 365 = 365,000 / 3 =  ~122,000
         dirty = []
-        while len(dirty) <= 122000//THREADS and i < end:
+        while len(dirty) <= LINK_SPLIT//THREADS and i < end:
 #
             # gets the amount at this index and also the unmber of times this amount appeared in darknet data
             p = prices[i]
@@ -49,7 +51,7 @@ def search(start,end):
 #
                 # calculates a confidence to assign to that transaction being darknet
                 # only transactions with a confidence >= 50% are included in the list of suspected darknet transactions
-                if count*(num_found**-1) >= .5:
+                if count*(num_found**-1) >= CONFI_AMOUNT:
                     dirty.append((tId,count*(num_found**-1)))
 #
             i+=1

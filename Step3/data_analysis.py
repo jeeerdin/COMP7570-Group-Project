@@ -8,7 +8,9 @@ import scipy.stats as stats
 This script calculates the F1-Score and other metrics for each method, 
 the ROC Curve and a bar plot showing the speed of each method
 '''
-
+# Constants
+TRAINING_MONTHS = 10
+P_VALUE_BELOW = 0.05
 
 # A list of each method acrynom and a dictionary giving their long name
 methods = ['rf','lgb','lr']
@@ -190,7 +192,7 @@ for m in methods:
     y_test_test = data[m]['y_test'][:,-60000:]
 
     # Calculate the metrics for each trial
-    for i in range(10):
+    for i in range(TRAINING_MONTHS):
 
         # calculate pr curve and find the threshold that maximizez the f1-score
         precision, recall, thresholds = sk_metrics.precision_recall_curve(y_test_train[i], y_pred_train[i])
@@ -274,24 +276,24 @@ for metric in ['Precision','Recall','Accuracy','ROC-AUC','F1']:
     # Perform the wilcoxen test between the RF and LGBM and check if the 
     # p-value is less then 95%
     # This is done on the train data
-    better_1 = stats.wilcoxon(train_groups[0], train_groups[1],alternative = 'greater')[1] < 0.05
+    better_1 = stats.wilcoxon(train_groups[0], train_groups[1],alternative = 'greater')[1] < P_VALUE_BELOW
     
     # Perform the wilcoxen test between the RF and LR and check if the 
     # p-value is less then 95%
     # This is done on the train data
-    better_2 = stats.wilcoxon(train_groups[0], train_groups[2],alternative = 'greater')[1] < 0.05
+    better_2 = stats.wilcoxon(train_groups[0], train_groups[2],alternative = 'greater')[1] < P_VALUE_BELOW
     print("For {} The RF is better then the LGB on the train set: ".format(metric),better_1)
     print("For {} The RF is better then the LR on the train set: ".format(metric),better_2)
     
     # Perform the wilcoxen test between the RF and LGBM and check if the 
     # p-value is less then 95%
     # This is done on the test data
-    better_1 = stats.wilcoxon(test_groups[0], test_groups[1],alternative = 'greater')[1] < 0.05
+    better_1 = stats.wilcoxon(test_groups[0], test_groups[1],alternative = 'greater')[1] < P_VALUE_BELOW
     
     # Perform the wilcoxen test between the RF and LR and check if the 
     # p-value is less then 95%
     # This is done on the test data
-    better_2 = stats.wilcoxon(test_groups[0], test_groups[2],alternative = 'greater')[1] < 0.05
+    better_2 = stats.wilcoxon(test_groups[0], test_groups[2],alternative = 'greater')[1] < P_VALUE_BELOW
     print("For {} The RF is better then the LGB on the test set: ".format(metric),better_1)
     print("For {} The RF is better then the LR on the test set: ".format(metric),better_2)
 

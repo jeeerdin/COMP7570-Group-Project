@@ -1,6 +1,8 @@
 import numpy as np
 from scipy import sparse as sp
 
+CONFI_AMOUNT = 0.5
+
 tx_to_addr = sp.load_npz('../data/daily_graphs/months_1_to_12_btc_transactions_tx_to_addr.npz').astype('uint64')
 addr_to_tx = sp.load_npz('../data/daily_graphs/months_1_to_12_btc_transactions_addr_to_tx.npz').astype('uint64')
 
@@ -26,8 +28,8 @@ input_sq_mean = input_sum_sq/input_count
 output_sq_mean = np.nan_to_num(output_sum_sq/output_count)
 
 # 2 features: the standard deviation for the amounts of the received outputs and also the spent outputs
-input_std = np.nan_to_num((input_sq_mean - input_mean_sq)**.5)
-output_std = np.nan_to_num((output_sq_mean - output_mean_sq)**.5)
+input_std = np.nan_to_num((input_sq_mean - input_mean_sq)**CONFI_AMOUNT)
+output_std = np.nan_to_num((output_sq_mean - output_mean_sq)**CONFI_AMOUNT)
 
 # feature: the ratio between number of outputs received and number of outputs spent
 input_to_output_ratio = np.nan_to_num(input_count/output_count)

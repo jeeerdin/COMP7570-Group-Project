@@ -7,11 +7,13 @@ import cProfile
 from datetime import datetime
 from calendar import monthrange
 
+MONTHS = 12
+TOTAL_DAYS = 365
 YEAR = 2015
 DATA_PATH = "../data/edges/edges{}/".format(YEAR)
 
 days_per_month = [0]
-for i in range(1,12):
+for i in range(1,MONTHS):
     days_per_month.append(monthrange(YEAR, i)[1])
 days_per_month = np.cumsum(days_per_month)
 
@@ -66,7 +68,7 @@ def read_all():
     '''
     Reads every output and input file
     '''
-    for i in range(12):
+    for i in range(MONTHS):
         print(i)
         read_output_file(i)
 
@@ -87,7 +89,7 @@ for tx in tId:
     i+=1
 
 
-for i in range(365):
+for i in range(TOTAL_DAYS):
     print(i)
     np.save('../data/grams/linked/daily_bad_tId/{}.npy'.format(i),tId[days == i])
 

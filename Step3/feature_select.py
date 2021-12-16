@@ -10,7 +10,7 @@ from sklearn.datasets import make_classification
 import time
 
 THREADS = 8
-
+TOTAL_DAYS = 365
 
 '''
 We read in each day's data
@@ -20,7 +20,7 @@ X_days = []
 y_days = []
 
 # Loop through the days
-for day in range(1,365):
+for day in range(1,TOTAL_DAYS):
 
     # load the feature matrix for that day
     X = np.load('../data/grams/X/{}.npy'.format(day))
